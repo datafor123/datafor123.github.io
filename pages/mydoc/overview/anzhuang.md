@@ -27,12 +27,22 @@ permalink: anzhuang.html
    ```
    ![image-20191121164830471](../../../images/image-20191121164830471.png)
 
-3. 修改“pentaho-solutions\system”目录下的applicationContext-spring-security.xml文件，添加如下代码：
+3. 修改“pentaho-solutions\system”目录下的applicationContext-spring-security.xml文件
+
+   - 在<bean id="filterInvocationInterceptor"下面添加
 
    ```xml
-   <sec:intercept-url pattern="\A/plugin/datafor/api/openshare.*\Z" access="Anonymous,Authenticated" />
+   <sec:intercept-url pattern="\A/content/datafor/*.*\Z" access="Anonymous,Authenticated" />
    ```
-   ![image-20191121165155937](../../../images/image-20191121165155937.png)
+   - 在<bean id="filterInvocationInterceptorForWS"下增加
+   
+   ```
+   <sec:intercept-url pattern="\A/plugin/datafor/api/.*\Z" access="Anonymous,Authenticated" />
+   ```
+   
+   
+   
+
 
 4. 重启Pentaho PBA，安装完成
 
